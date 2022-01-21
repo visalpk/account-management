@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CustomerService from '../services/CustomerService'
-
+import '../list.css'
 class ListCustomerComponent extends Component {
     constructor(props) {
         super(props)
@@ -37,13 +37,13 @@ class ListCustomerComponent extends Component {
 
     render() {
         return (
-            <div>
+            <div >
                  <h2 className="text-center">Customers List</h2>
                  <div className = "row">
                     <button className="btn btn-primary" onClick={this.addCustomer}> signup</button>
                  </div>
                  <br></br>
-                 <div className = "row">
+                 <div  className = "row">
                         <table className = "table table-striped table-bordered">
 
                             <thead>
@@ -71,10 +71,10 @@ class ListCustomerComponent extends Component {
                                              <td> {customer.aadhar}</td>
                                              <td> {customer.mobile}</td>
                                              <td>
-                                                 <button onClick={ () => this.editCustomer(customer.id)} className="btn btn-info">Update </button>
+                                           {/*       <button onClick={ () => this.editCustomer(customer.id)} className="btn btn-info">Update </button>
                                                  <button style={{marginLeft: "10px"}} onClick={ () => this.deleteCustomer(customer.id)} className="btn btn-danger">Delete </button>
                                                  <button style={{marginLeft: "10px"}} onClick={ () => this.viewCustomer(customer.id)} className="btn btn-info">View </button>
-                                             </td>
+                                             */} </td>
                                         </tr>
                                     )
                                 }
@@ -84,6 +84,7 @@ class ListCustomerComponent extends Component {
                  </div>
 
             </div>
+        
         )
     }
 }

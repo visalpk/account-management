@@ -12,11 +12,11 @@ class HeaderComponent extends Component {
     render() {
         return (
             <div>
-                <header>
-                    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+               
+                    <nav style={{}} className="navbar navbar-expand-md navbar-dark bg-dark">
                     <div><a href="/" className="navbar-brand">Banking Management App</a></div>
                     </nav>
-                </header>
+               
             </div>
         )
     }

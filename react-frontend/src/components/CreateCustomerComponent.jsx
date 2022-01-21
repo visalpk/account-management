@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import CustomerService from '../services/CustomerService';
+import { Link } from 'react-router-dom';
+import '../Login.css';
 
 class CreateCustomerComponent extends Component {
     constructor(props) {
@@ -106,13 +108,12 @@ class CreateCustomerComponent extends Component {
         return (
             <div>
                 <br></br>
-                   <div className = "container">
-                        <div className = "row">
-                            <div className = "card col-md-6 offset-md-3 offset-md-3">
+                   
+                            <div className = "auth-wrapper auth-inner margintop">
                                 {
                                     this.getTitle()
                                 }
-                                <div className = "card-body">
+                                <div >
                                     <form>
                                         <div className = "form-group">
                                             <label> Title: </label>
@@ -131,32 +132,34 @@ class CreateCustomerComponent extends Component {
                                         </div>
                                         <div className = "form-group">
                                             <label> DOB: </label>
-                                            <input placeholder="Last Name" name="lastName" className="form-control" 
+                                            <input  type="date" name="dob" className="form-control" 
                                                 value={this.state.dob} onChange={this.changeDobHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> Mobile: </label>
-                                            <input placeholder="Last Name" name="lastName" className="form-control" 
+                                            <input placeholder="Mobile number" name="mobile" className="form-control" 
                                                 value={this.state.mobile} onChange={this.changeMobileHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> PAN: </label>
-                                            <input placeholder="Last Name" name="lastName" className="form-control" 
+                                            <input placeholder="PAN" name="lastName" className="form-control" 
                                                 value={this.state.pan} onChange={this.changePanHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> Aadhar: </label>
-                                            <input placeholder="Last Name" name="lastName" className="form-control" 
+                                            <input placeholder="Aadhar" name="aadhar" className="form-control" 
                                                 value={this.state.aadhar} onChange={this.changeAadharHandler}/>
                                         </div>
 
 
                                         <button className="btn btn-success" onClick={this.saveOrUpdateCustomer}>Save</button>
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
-                                    </form>
+                                        <p className="forgot-password text-right">
+                                            Already registered <Link  to="/">  Login?</Link>
+                                        </p>
+                                                            </form>
                                 </div>
-                            </div>
-                        </div>
+                            
 
                    </div>
             </div>
