@@ -18,13 +18,7 @@ class CreateCustomerComponent extends Component {
             pan:'',
             aadhar:'',
         }
-        this.changeTitleHandler = this.changeTitleHandler.bind(this);
-        this.changeFullNameHandler = this.changeFullNameHandler.bind(this);       
-        this.changeEmailHandler = this.changeEmailHandler.bind(this);
-        this.changeDobHandler = this.changeDobHandler.bind(this);
-        this.changeMobileHandler = this.changeMobileHandler.bind(this);       
-        this.changePanHandler = this.changePanHandler.bind(this);               
-        this.changeAadharHandler = this.changeAadharHandler.bind(this);
+        this.changeHandler = this.changeHandler.bind(this);
         this.saveOrUpdateCustomer = this.saveOrUpdateCustomer.bind(this);
     }
 
@@ -69,29 +63,18 @@ class CreateCustomerComponent extends Component {
         }
     }
     
-    changeTitleHandler= (event) => {
-        this.setState({title: event.target.value});
-    }
+    changeHandler(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
+    
 
-    changeFullNameHandler= (event) => {
-        this.setState({fullName: event.target.value});
-    }
-
-    changeEmailHandler= (event) => {
-        this.setState({emailId: event.target.value});
-    }
-    changeDobHandler= (event) => {
-        this.setState({dob: event.target.value});
-    }
-    changeMobileHandler= (event) => {
-        this.setState({mobile: event.target.value});
-    }
-    changePanHandler= (event) => {
-        this.setState({pan: event.target.value});
-    }
-    changeAadharHandler= (event) => {
-        this.setState({aadhar: event.target.value});
-    }
+   
 
     cancel(){
         this.props.history.push('/customers');
@@ -118,37 +101,37 @@ class CreateCustomerComponent extends Component {
                                         <div className = "form-group">
                                             <label> Title: </label>
                                             <input placeholder="Mr/Ms/Mrs" name="title" className="form-control" 
-                                                value={this.state.title} onChange={this.changeTitleHandler}/>
+                                                value={this.state.title} onChange={this.changeHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> Full Name: </label>
                                             <input placeholder="Full Name" name="fullName" className="form-control" 
-                                                value={this.state.fullName} onChange={this.changeFullNameHandler}/>
+                                                value={this.state.fullName} onChange={this.changeHandler}/>
                                         </div>                                        
                                         <div className = "form-group">
                                             <label> Email Id: </label>
                                             <input placeholder="Email Address" name="emailId" className="form-control" 
-                                                value={this.state.emailId} onChange={this.changeEmailHandler}/>
+                                                value={this.state.emailId} onChange={this.changeHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> DOB: </label>
                                             <input  type="date" name="dob" className="form-control" 
-                                                value={this.state.dob} onChange={this.changeDobHandler}/>
+                                                value={this.state.dob} onChange={this.changeHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> Mobile: </label>
                                             <input placeholder="Mobile number" name="mobile" className="form-control" 
-                                                value={this.state.mobile} onChange={this.changeMobileHandler}/>
+                                                value={this.state.mobile} onChange={this.changeHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> PAN: </label>
-                                            <input placeholder="PAN" name="lastName" className="form-control" 
-                                                value={this.state.pan} onChange={this.changePanHandler}/>
+                                            <input placeholder="PAN" name="pan" className="form-control" 
+                                                value={this.state.pan} onChange={this.changeHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> Aadhar: </label>
                                             <input placeholder="Aadhar" name="aadhar" className="form-control" 
-                                                value={this.state.aadhar} onChange={this.changeAadharHandler}/>
+                                                value={this.state.aadhar} onChange={this.changeHandler}/>
                                         </div>
 
 
