@@ -45,7 +45,7 @@ public class Customer {
 	
 	@Size(max = 12)
 	private String aadhar;
-
+    public Customer() {}
 	public Customer( @Size(max = 4) String title,  @Size(max = 20) String fullname,
 			 @Size(max = 20) String email,  @Size(max = 8) String dob,
 			 @Size(max = 10) String mobile,  @Size(max = 10) String pan,
