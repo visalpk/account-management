@@ -13,9 +13,18 @@ import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import Signup from "./components/Signup";
+import EditCustomer from "./components/EditCustomer";
+import Withdraw from "./usercomponent/Withdraw";
+import Accountstmt from "./usercomponent/AccountStmt";
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
+import Deposit from "./usercomponent/Deposit";
+import Registerpayee from "./usercomponent/RegisterPayee";
+import Registerbiller from "./usercomponent/RegisterBiller";
+import Fundtransfer from "./usercomponent/FundTransfer";
+import Paymentstmt from "./usercomponent/PaymentStmt";
+
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -132,6 +141,15 @@ const App = () => {
           <Route path="/mod" component={BoardModerator} />
           <Route path="/admin" component={BoardAdmin} />
           <Route path="/signup" component={Signup} />
+          <Route path="/customer/edit/:id" component={EditCustomer} />
+          <Route path="/withdraw" component={Withdraw} />
+          <Route path="/deposit" component={Deposit} />
+          <Route path="/registerpayee" component={Registerpayee} />
+          <Route path="/fundtransfer" component={Fundtransfer} />
+          <Route path="/accountstmt" component={Accountstmt} />
+          <Route path="/registerbiller" component={Registerbiller} />
+          <Route path="/paymentstmt" component={Paymentstmt} />
+         
         </Switch>
       </div>
 

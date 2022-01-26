@@ -10,9 +10,12 @@ const register = (username, email, password) => {
   });
 };
 
-const register2 = (username, email, title, dob, mobile, pan, aadhar ) => {
-  return axios.post(API_URL + "signup", {
-    username, email, title, dob, mobile, pan, aadhar
+
+
+const register2 = (title, fullname, email,  dob, mobile, pan, aadhar,approval ) => {
+  console.log(title, fullname, email,  dob, mobile, pan, aadhar, approval)
+  return axios.post(API_URL + "vsignup", {
+    title, fullname, email, dob, mobile, pan, aadhar, approval
   });
 };
 
@@ -45,5 +48,6 @@ export default {
   register2,
   login,
   logout,
-  getCurrentUser,
+  getCurrentUser
+  
 };

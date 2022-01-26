@@ -16,6 +16,8 @@ const required = (value) => {
   }
 };
 
+
+
 const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
@@ -68,61 +70,26 @@ const validAadhar = (value) => {
     );
   }
 };
-
-/* const vpassword = (value) => {
-
-          if (value.length < 8 || value.length > 12 ) {
-          return (
-          <div className="alert alert-danger" role="alert">
-          The password must be between 8 and 12 characters
-          </div>
-          );
-          }
-          if (value.search(/[a-z]/i) < 0) {
-          return (
-          <div className="alert alert-danger" role="alert">
-          Your password must contain at least one small letter.</div>
-          );
-          }
-          if (value.search(/[0-9]/) < 0) {
-          return (
-          <div className="alert alert-danger" role="alert">
-          Your password must contain at least one digit.</div>
-          );
-          }
-          if (value.search(/[!@#$%^&*]/i) < 0) {
-          return (
-          <div className="alert alert-danger" role="alert">
-          Your password must contain at least one special character.</div>
-          );
-          }
-          if (value.search(/[A-Z]/) < 0) {
-          return (
-          <div className="alert alert-danger" role="alert">
-          Your password must contain at least one capital letter.</div>
-          );
-          }
-  
-};*/ 
-
 const Signup = (props) => {
   const form = useRef();
   const checkBtn = useRef();
-
-  const [username, setUsername] = useState("");
+ 
+  const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Mr");
   const [dob, setDob] = useState("");
   const [mobile, setMobile] = useState("");
   const [pan, setPan] = useState("");
   const [aadhar, setAadhar] = useState("");
+  const [approval, setApproval] = useState("0");
   
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
+
   const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
+    const fullname = e.target.value;
+    setFullname(fullname);
   };
 
   const onChangeEmail = (e) => {
@@ -130,11 +97,7 @@ const Signup = (props) => {
     setEmail(email);
   };
 
-  const onChangeTitle = (e) => {
-    const title = e.target.value;
-    setTitle(title);
-  };
-
+ 
   const onChangedob = (e) => {
     const dob = e.target.value;
     setDob(dob);
@@ -154,6 +117,15 @@ const Signup = (props) => {
     setAadhar(aadhar);
   };
 
+ 
+ 
+  const [addrtype, setAddrtype] = useState(["Mr", "Ms", "Mrs"])
+  const Add = addrtype.map(Add => Add  )
+  
+  const handleAddrTypeChange = (e) => {
+    let x=addrtype[e.target.value]
+    setTitle(x)}
+  
   
  
   const handleRegister = (e) => {
@@ -165,7 +137,8 @@ const Signup = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register2(username, email, title, dob, mobile, pan, aadhar).then(
+      console.log()
+      AuthService.register2(title, fullname, email,  dob, mobile, pan, aadhar, approval).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -197,23 +170,27 @@ const Signup = (props) => {
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
-              <div className="form-group">
+              <div className="form-group  ">
                 <label htmlFor="title">Title</label>
-                <select name="title" className='form-control' onChange={onChangeTitle}
-                  validations={[required]}>
-                  <option value={title} selected>Mr</option>
-                  <option value={title}>Mrs</option>
-                  <option value={title}>Ms</option></select>
+                
+                < select  name="title" validations={[required]}
+                onChange={e => handleAddrTypeChange(e)}
+                className="form-control" >
+                {
+                  Add.map((address, key) => <option value={key}>{address}</option>)
+                }
+              </select >
               </div>
              
-              <div className="form-group">
-                <label htmlFor="username">Username</label>
+               <div className="form-group">
+                <label htmlFor="fullname">Username</label>
                 <Input
                   type="text"
                   className="form-control"
-                  name="username"
-                  value={username}
+                  name="fullname"
+                  value={fullname}
                   onChange={onChangeUsername}
+                  placeholder={"fullname"}
                   validations={[required, vusername]}
                 />
               </div>
@@ -226,17 +203,20 @@ const Signup = (props) => {
                   name="email"
                   value={email}
                   onChange={onChangeEmail}
+                  placeholder={"Eg. abc@hotmail.com"}
                   validations={[required, validEmail]}
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="Date of Birth">D.O.B</label>
                 <Input
-                  type="date"
+                  type="text"
                   className="form-control"
                   name="date"
                   value={dob}
                   onChange={onChangedob}
+                  placeholder={"dd/mm/yy"}
                   validations={[required]}
                 />
               </div>
@@ -249,6 +229,7 @@ const Signup = (props) => {
                   name="Mobile"
                   value={mobile}
                   onChange={onChangemobile}
+                  placeholder={"mobilenumber"}
                   validations={[required, validMobile]}
                 />
               </div>
@@ -260,6 +241,7 @@ const Signup = (props) => {
                   name="pan"
                   value={pan}
                   onChange={onChangepan}
+                  placeholder={"XXXXX1234X"}
                   validations={[required, validPAN]}
                 />
               </div>
@@ -271,12 +253,13 @@ const Signup = (props) => {
                   name="aadhar"
                   value={aadhar}
                   onChange={onChangeaadhar}
+                  placeholder={"12 digit aadhar number"}
                   validations={[required, validAadhar]}
                 />
               </div>
 
               <div className="form-group">
-                <button className="btn btn-primary btn-block">Sign Up</button>
+                <button className="btn btn-primary btn-block" >Sign Up</button>
               </div>
             </div>
           )}
